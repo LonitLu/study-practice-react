@@ -1,7 +1,13 @@
 .nav {
   grid-area: nav;
-  background-color: #9fa95d;
+  background-color: #598d42;
   padding: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-size: 20px;
 }
 
 .item {
@@ -10,5 +16,5 @@
 }
 
 .item a.active__link {
-  color: gold;
+  color: rgb(11, 202, 209);
 }

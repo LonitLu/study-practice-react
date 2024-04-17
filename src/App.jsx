@@ -8,8 +8,9 @@ import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import PropTypes from "prop-types";
 
-const App = () => {
+const App = (props) => {
   return (
     <>
       <BrowserRouter>
@@ -18,8 +19,16 @@ const App = () => {
           <NavBar />
           <div className="app__wrapper--content">
             <Routes>
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/dialogs/*" element={<Dialogs />} />
+              <Route
+                path="/profile"
+                element={<Profile posts={props.posts} />}
+              />
+              <Route
+                path="/dialogs/*"
+                element={
+                  <Dialogs dialogs={props.dialogs} messages={props.messages} />
+                }
+              />
               <Route path="/news" element={<News />} />
               <Route path="/music" element={<Music />} />
               <Route path="/settings" element={<Settings />} />
@@ -29,6 +38,12 @@ const App = () => {
       </BrowserRouter>
     </>
   );
+};
+
+App.propTypes = {
+  posts: PropTypes.string,
+  dialogs: PropTypes.string,
+  messages: PropTypes.string,
 };
 
 export default App;

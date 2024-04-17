@@ -1,21 +1,19 @@
 import MyPosts from "./MyPosts/MyPosts";
 // import styles from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import PropTypes from "prop-types";
 
-const Profile = () => {
-  let posts = [
-    { id: 1, message: "Hi. how are you?", likesCount: 12 },
-    { id: 2, message: "Hi you, It'styles my first post", likesCount: 8 },
-    { id: 3, message: "It'styles my first post", likesCount: 6 },
-    { id: 4, message: "Yo Victor, Hi. how are you?", likesCount: 22 },
-  ];
-
+const Profile = (props) => {
   return (
     <>
       <ProfileInfo />
-      <MyPosts posts={posts} />
+      <MyPosts posts={props.posts} />
     </>
   );
+};
+
+Profile.propTypes = {
+  posts: PropTypes.string,
 };
 
 export default Profile;

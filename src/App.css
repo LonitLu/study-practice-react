@@ -13,5 +13,10 @@
 
 .app__wrapper--content {
   grid-area: content;
-  background-color: #cbcbcb;
+  background-color: #eff6f4;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
