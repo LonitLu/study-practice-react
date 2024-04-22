@@ -4,11 +4,11 @@ import Message from "./Message/Message";
 import PropTypes from "prop-types";
 
 const Dialogs = (props) => {
-  let dialogsElements = props.dialogs.map((d) => (
+  let dialogsElements = props.state.dialogs.map((d) => (
     <DialogItem key={d.id} name={d.name} id={d.id} />
   ));
 
-  let messagesElements = props.messages.map((m) => (
+  let messagesElements = props.state.messages.map((m) => (
     <Message key={m.id} message={m.message} id={m.id} />
   ));
 
@@ -21,8 +21,9 @@ const Dialogs = (props) => {
 };
 
 Dialogs.propTypes = {
-  dialogs: PropTypes.string,
-  messages: PropTypes.string,
+  dialogs: PropTypes.array,
+  messages: PropTypes.array,
+  state: PropTypes.object,
 };
 
 export default Dialogs;

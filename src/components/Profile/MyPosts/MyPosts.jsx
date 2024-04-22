@@ -24,7 +24,7 @@ const MyPosts = (props) => {
 };
 
 MyPosts.propTypes = {
-  posts: PropTypes.string,
+  posts: PropTypes.array,
 };
 
 export default MyPosts;
