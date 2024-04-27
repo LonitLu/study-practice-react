@@ -7,15 +7,21 @@ const Profile = (props) => {
   return (
     <>
       <ProfileInfo />
-      <MyPosts posts={props.state.posts} addPost={props.addPost} />
+      <MyPosts
+        posts={props.profilePage.posts}
+        addPost={props.addPost}
+        newPostText={props.profilePage.newPostText}
+        updateNewPostText={props.updateNewPostText}
+      />
     </>
   );
 };
 
 Profile.propTypes = {
   posts: PropTypes.array,
-  state: PropTypes.object,
+  profilePage: PropTypes.object,
   addPost: PropTypes.func,
+  updateNewPostText: PropTypes.func,
 };
 
 export default Profile;

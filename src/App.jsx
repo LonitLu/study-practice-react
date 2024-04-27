@@ -22,8 +22,9 @@ const App = (props) => {
               path="/profile"
               element={
                 <Profile
-                  state={props.state.profilePage}
+                  profilePage={props.state.profilePage}
                   addPost={props.addPost}
+                  updateNewPostText={props.updateNewPostText}
                 />
               }
             />
@@ -42,11 +43,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  posts: PropTypes.array,
-  dialogs: PropTypes.array,
-  messages: PropTypes.array,
   state: PropTypes.object,
   addPost: PropTypes.func,
+  updateNewPostText: PropTypes.func,
 };
 
 export default App;
