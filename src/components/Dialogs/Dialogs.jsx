@@ -1,3 +1,4 @@
+import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.css";
 import Message from "./Message/Message";
@@ -12,10 +13,27 @@ const Dialogs = (props) => {
     <Message key={m.id} message={m.message} id={m.id} />
   ));
 
+  let newMessageElement = React.createRef();
+
+  let addMessage = () => {
+    let text = newMessageElement.current.value;
+    alert(text);
+  };
+
   return (
     <div className={styles.dialogs}>
       <div className={styles.dialogs__items}>{dialogsElements}</div>
-      <div className={styles.messages}>{messagesElements}</div>
+      <div className={styles.messages}>{messagesElements} </div>
+      <textarea
+        ref={newMessageElement}
+        name=""
+        id=""
+        cols="30"
+        rows="1"
+      ></textarea>
+      <button onClick={addMessage} className={styles.btn}>
+        New message
+      </button>
     </div>
   );
 };
