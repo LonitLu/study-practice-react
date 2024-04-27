@@ -6,7 +6,7 @@ import state from "./redux/state.js";
 import { addPost } from "./redux/state.js";
 import { BrowserRouter } from "react-router-dom";
 
-// addPost("test test");
+addPost("test test");
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
