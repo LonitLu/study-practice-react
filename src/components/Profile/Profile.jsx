@@ -7,7 +7,7 @@ const Profile = (props) => {
   return (
     <>
       <ProfileInfo />
-      <MyPosts posts={props.state.posts} />
+      <MyPosts posts={props.state.posts} addPost={props.addPost} />
     </>
   );
 };
@@ -15,6 +15,7 @@ const Profile = (props) => {
 Profile.propTypes = {
   posts: PropTypes.array,
   state: PropTypes.object,
+  addPost: PropTypes.func,
 };
 
 export default Profile;

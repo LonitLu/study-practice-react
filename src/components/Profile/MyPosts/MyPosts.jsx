@@ -8,11 +8,12 @@ const MyPosts = (props) => {
     <Posts key={p.id} message={p.message} likesCount={p.likesCount} />
   ));
 
-  let newPostElement = React.createRef()
+  let newPostElement = React.createRef();
 
   let addPost = () => {
-    let text = newPostElement.current.value
-    alert(text);
+    let text = newPostElement.current.value;
+    props.addPost(text);
+    newPostElement.current.value = "";
   };
 
   return (
@@ -33,6 +34,7 @@ const MyPosts = (props) => {
 
 MyPosts.propTypes = {
   posts: PropTypes.array,
+  addPost: PropTypes.func,
 };
 
 export default MyPosts;
