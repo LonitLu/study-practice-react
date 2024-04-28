@@ -1,11 +1,9 @@
-import state, { subscribe } from "./redux/state.jsx";
+import store from "./redux/state.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { addPost, updateNewPostText } from "./redux/state.jsx";
 import { HashRouter } from "react-router-dom";
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -13,16 +11,12 @@ let rerenderEntireThree = (state) => {
   root.render(
     <HashRouter>
       <React.StrictMode>
-        <App
-          state={state}
-          addPost={addPost}
-          updateNewPostText={updateNewPostText}
-        />
+        <App state={state} dispatch={store.dispatch.bind(store)} />
       </React.StrictMode>
     </HashRouter>
   );
 };
 
-rerenderEntireThree(state);
+rerenderEntireThree(store.getState());
 
-subscribe(rerenderEntireThree);
+store.subscribe(rerenderEntireThree);

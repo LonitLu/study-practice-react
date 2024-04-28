@@ -23,8 +23,7 @@ const App = (props) => {
               element={
                 <Profile
                   profilePage={props.state.profilePage}
-                  addPost={props.addPost}
-                  updateNewPostText={props.updateNewPostText}
+                  dispatch={props.dispatch}
                 />
               }
             />
@@ -44,8 +43,7 @@ const App = (props) => {
 
 App.propTypes = {
   state: PropTypes.object,
-  addPost: PropTypes.func,
-  updateNewPostText: PropTypes.func,
+  dispatch: PropTypes.func,
 };
 
 export default App;

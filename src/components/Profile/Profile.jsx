@@ -9,9 +9,8 @@ const Profile = (props) => {
       <ProfileInfo />
       <MyPosts
         posts={props.profilePage.posts}
-        addPost={props.addPost}
         newPostText={props.profilePage.newPostText}
-        updateNewPostText={props.updateNewPostText}
+        dispatch={props.dispatch}
       />
     </>
   );
@@ -20,8 +19,7 @@ const Profile = (props) => {
 Profile.propTypes = {
   posts: PropTypes.array,
   profilePage: PropTypes.object,
-  addPost: PropTypes.func,
-  updateNewPostText: PropTypes.func,
+  dispatch: PropTypes.func,
 };
 
 export default Profile;
