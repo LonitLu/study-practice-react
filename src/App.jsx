@@ -29,7 +29,7 @@ const App = (props) => {
             />
             <Route
               path="/dialogs/*"
-              element={<Dialogs state={props.state.dialogsPage} />}
+              element={<Dialogs store={props.store} />}
             />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
@@ -44,6 +44,7 @@ const App = (props) => {
 App.propTypes = {
   state: PropTypes.object,
   dispatch: PropTypes.func,
+  store: PropTypes.object,
 };
 
 export default App;
