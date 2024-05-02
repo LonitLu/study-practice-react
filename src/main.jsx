@@ -1,4 +1,4 @@
-import store from "./redux/state.jsx";
+import store from "./redux/redux-store.js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
@@ -23,4 +23,7 @@ let rerenderEntireThree = (state) => {
 
 rerenderEntireThree(store.getState());
 
-store.subscribe(rerenderEntireThree);
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireThree(state);
+});
