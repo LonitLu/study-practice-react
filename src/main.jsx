@@ -4,18 +4,17 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { HashRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-let rerenderEntireThree = (state) => {
+let rerenderEntireThree = () => {
   root.render(
     <HashRouter>
       <React.StrictMode>
-        <App
-          state={state}
-          dispatch={store.dispatch.bind(store)}
-          store={store}
-        />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </React.StrictMode>
     </HashRouter>
   );
