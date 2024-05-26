@@ -1,37 +1,13 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 let initialState = {
-  users: [
-    // {
-    //   id: 1,
-    //   photoUrl:
-    //     "https://avatars.mds.yandex.net/i?id=65143c59e9df102a346b674e873d25e01b5514d1-12753080-images-thumbs&n=13",
-    //   followed: false,
-    //   fullName: "Dmitri",
-    //   status: "I am BOSS",
-    //   location: { city: "Tyumen", country: "Russia" },
-    // },
-    // {
-    //   id: 2,
-    //   photoUrl:
-    //     "https://avatars.mds.yandex.net/i?id=65143c59e9df102a346b674e873d25e01b5514d1-12753080-images-thumbs&n=13",
-    //   followed: true,
-    //   fullName: "Dima",
-    //   status: "No, I am BOSS",
-    //   location: { city: "Omsk", country: "Russia" },
-    // },
-    // {
-    //   id: 3,
-    //   photoUrl:
-    //     "https://avatars.mds.yandex.net/i?id=65143c59e9df102a346b674e873d25e01b5514d1-12753080-images-thumbs&n=13",
-    //   followed: false,
-    //   fullName: "Lonit",
-    //   status: "I am big BOSS",
-    //   location: { city: "Moscow", country: "Russia" },
-    // },
-  ],
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 19,
+  currentPage: 1,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -64,6 +40,12 @@ const usersReducer = (state = initialState, action) => {
         users: [...state.users, ...action.users],
       };
 
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      };
+
     default:
       return state;
   }
@@ -72,5 +54,9 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({ type: FOLLOW, userId });
 export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
+export const setCurrentPageAC = (currentPage) => ({
+  type: SET_CURRENT_PAGE,
+  currentPage,
+});
 
 export default usersReducer;

@@ -7,3 +7,16 @@
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.selected__page {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -5px;
+}
