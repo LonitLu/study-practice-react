@@ -1,11 +1,64 @@
-import { connect } from "react-redux";
+import React from "react";
+import axios from "axios";
 import Users from "./Users";
+import { connect } from "react-redux";
 import {
   followAC,
   setCurrentPageAC,
+  setTotalUsersCountAC,
   setUsersAC,
+  toggleisFetchingAC,
   unfollowAC,
 } from "../../redux/users-reducer";
+import styles from "./Users.module.css";
+import preloader from "../../assets/images/loader.svg";
+
+class UsersContainer extends React.Component {
+  componentDidMount() {
+    this.props.toggleisFetching(true);
+    axios
+      .get(
+        `https://api.slingacademy.com/v1/sample-data/users?limit=${
+          this.props.pageSize
+        }&offset=${this.props.currentPage - 1}`
+      )
+      .then((response) => {
+        this.props.toggleisFetching(false);
+        this.props.setUsers(response.data.users);
+        this.props.setTotalUsersCount(response.data.total_users);
+      });
+  }
+
+  onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+    this.props.toggleisFetching(true);
+    axios
+      .get(
+        `https://api.slingacademy.com/v1/sample-data/users?limit=${
+          this.props.pageSize
+        }&offset=${pageNumber * 5 - 5}`
+      )
+      .then((response) => {
+        this.props.toggleisFetching(false);
+        this.props.setUsers(response.data.users);
+      });
+  };
+
+  render() {
+    return (
+      <>
+        {this.props.isFetching ? <img className={styles.preloader} src={preloader} /> : null}
+        <Users
+          currentPage={this.props.currentPage}
+          users={this.props.users}
+          follow={this.props.follow}
+          unfollow={this.props.unfollow}
+          onPageChanged={this.onPageChanged}
+        />
+      </>
+    );
+  }
+}
 
 let mapStateToProps = (state) => {
   return {
@@ -13,6 +66,7 @@ let mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching,
   };
 };
 
@@ -30,7 +84,13 @@ let mapDispatchToProps = (dispatch) => {
     setCurrentPage: (pageNumber) => {
       dispatch(setCurrentPageAC(pageNumber));
     },
+    setTotalUsersCount: (totalCount) => {
+      dispatch(setTotalUsersCountAC(totalCount));
+    },
+    toggleisFetching: (isFetching) => {
+      dispatch(toggleisFetchingAC(isFetching));
+    },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
