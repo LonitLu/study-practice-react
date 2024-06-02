@@ -1,11 +1,12 @@
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
+import { NavLink } from "react-router-dom";
 
 let Users = (props) => {
   // let pagesCount = Math.ceil(
   //   props.totalUsersCount / props.pageSize
   // );
-  // поставил 10 вместо pagesCount из-за большого количества страниц
+  // поставил 6 вместо pagesCount из-за большого количества страниц
   // надо найти способ как по другому можно выводить
 
   let pages = [];
@@ -35,10 +36,14 @@ let Users = (props) => {
         <div key={u.id}>
           <span>
             <div>
-              <img
-                src={u.profile_picture != null ? u.profile_picture : userPhoto}
-                className={styles.user__photo}
-              />
+              <NavLink to={"/profile/*" + u.id}>
+                <img
+                  src={
+                    u.profile_picture != null ? u.profile_picture : userPhoto
+                  }
+                  className={styles.user__photo}
+                />
+              </NavLink>
             </div>
             <div>
               {u.followed ? (
@@ -74,7 +79,7 @@ let Users = (props) => {
           </span>
         </div>
       ))}
-      
+
       <div className={styles.pagination}>
         {pages.map((p) => {
           return (
